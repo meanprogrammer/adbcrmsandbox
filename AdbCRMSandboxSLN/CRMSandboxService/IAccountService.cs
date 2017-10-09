@@ -19,6 +19,8 @@ namespace CRMSandboxService
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
+        [OperationContract]
+        List<AccountProxy> GetAllAccounts();
         
         // TODO: Add your service operations here
     }

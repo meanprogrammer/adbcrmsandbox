@@ -12,6 +12,13 @@ namespace CRMSandboxService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AccountService : IAccountService
     {
+        private SandboxCRMContext context = null;
+
+        public AccountService()
+        {
+            context = new SandboxCRMContext();
+        }
+
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
@@ -28,6 +35,12 @@ namespace CRMSandboxService
                 composite.StringValue += "Suffix";
             }
             return composite;
+        }
+
+
+        public List<AccountProxy> GetAllAccounts()
+        {
+            return ObjectConverter.ConvertToListOfAccount(context.AccountSet.ToList(), context);
         }
     }
 }
